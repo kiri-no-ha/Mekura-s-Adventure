@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
 
-namespace anim
+namespace ani
 {
     public class fullmob : MonoBehaviour
     {
