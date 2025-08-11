@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using animator;
 
 public class Player : LivingEntity
 {
@@ -17,10 +18,11 @@ public class Player : LivingEntity
     public Transform attackzona;
     private float moveX;
     private float moveY;
+    private anim anim;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+        anim = GetComponent<anim>();
     }
 
     // Update is called once per frame
@@ -38,8 +40,8 @@ public class Player : LivingEntity
         {
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
                 transform.position,
-                1, // Радиус атаки
-                LayerMask.GetMask("Water") // Слой врагов
+                1, // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+                LayerMask.GetMask("Water") // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             );
             foreach(Collider2D i in hitEnemies) 
             { 
