@@ -4,9 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GraphicSettings : MonoBehaviour
 {
+    public Toggle Toggle;
     public TMP_Dropdown resolutionDropdown;
     public TMP_Dropdown QualityDropdown;
     public Slider slidersoundvolume;
@@ -17,9 +19,14 @@ public class GraphicSettings : MonoBehaviour
     
     void Start()
     {
+        Toggle.isOn = true;
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
         resolutions = Screen.resolutions;
+        foreach (var resolution in resolutions)
+        {
+            Debug.Log(resolution.width);
+        }
         int currentresolution = 0;
 
         for (int i = 0; i < resolutions.Length; i++)
@@ -29,12 +36,15 @@ public class GraphicSettings : MonoBehaviour
             if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
             {
                 currentresolution = i;
+                Debug.Log($"{Screen.currentResolution.width}=={resolutions[i].width} =>{Screen.currentResolution.width== resolutions[i].width}");
+                Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             }
         }
 
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
         LoadSettings(currentresolution);
+        
     }
     public void SetResolutions(int currentResolution)
     {
@@ -76,15 +86,17 @@ public class GraphicSettings : MonoBehaviour
         }
         else
         {
-            QualityDropdown.value = currentres;
+            resolutionDropdown.value = currentres;
         }
         if (PlayerPrefs.HasKey("FullScreenPreference"))
         {
-            resolutionDropdown.value = PlayerPrefs.GetInt("FullScreenPreference");
+            Toggle.isOn = Convert.ToBoolean(PlayerPrefs.GetInt("FullScreenPreference"));
         }
         else
         {
-            QualityDropdown.value = 0;
+            Toggle.isOn = true;
         }
+        //SetResolutions(currentres);
+        //SetQuality();
     }
 }

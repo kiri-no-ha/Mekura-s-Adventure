@@ -88,10 +88,12 @@ namespace animator
         {
             // Поиск анимации в списке
             AnimationSequence newSequence = animations.Find(a => a.name == animationName);
+            
 
             if (newSequence == null)
             {
                 Debug.LogWarning($"Анимация {animationName} не найдена!");
+                Debug.Log($"Анимация {animationName} не найдена!");
                 return;
             }
 
