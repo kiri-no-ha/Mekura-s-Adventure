@@ -21,6 +21,8 @@ public class Player : LivingEntity
     public Transform attackzona;
     private int moveX;
     private int moveY;
+    private int last_moveX;
+    private int last_moveY;
     private anim anim;
     private SpriteRenderer spriteRenderer;
     private string LateAnim;
@@ -73,8 +75,10 @@ public class Player : LivingEntity
         
         }
 
-        anim.SwitchAnimation(AnimationWalk[moveY+1, moveX+1]);
+        if(last_moveX!=moveX || last_moveY!=moveY) anim.SwitchAnimation(AnimationWalk[moveY+1, moveX+1]);
         attackzona.localPosition = new Vector3(moveX*radiuceattackZona, moveY* radiuceattackZona);
+        last_moveX= moveX;
+        last_moveY= moveY;
         
 
     }
