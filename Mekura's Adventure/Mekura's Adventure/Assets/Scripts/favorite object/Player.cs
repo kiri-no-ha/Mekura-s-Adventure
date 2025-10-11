@@ -61,14 +61,14 @@ public class Player : LivingEntity
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         moveY = 0;
         moveX = 0;
         if (Input.GetKey(Forward_button)) moveY = 1;
         if (Input.GetKey(Back_button)) moveY = -1;
         if (Input.GetKey(Left_button)) moveX = -1;
         if (Input.GetKey(Right_button)) moveX = 1;
-        rb.velocity = new Vector2(moveX * speed, moveY*speed);
+        rb.linearVelocity = new Vector2(moveX * speed, moveY*speed);
         if (Input.GetKey(Bt_Action))
         {
             if (CanTalk && !IsTalk)

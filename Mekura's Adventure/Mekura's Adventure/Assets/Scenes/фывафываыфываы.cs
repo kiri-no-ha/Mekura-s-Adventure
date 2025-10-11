@@ -56,7 +56,7 @@ namespace ani
 
             if (animationCompleted) return;
 
-            float speedFactor = rb ? rb.velocity.magnitude * speedMultiplier : 1f;
+            float speedFactor = rb ? rb.linearVelocity.magnitude * speedMultiplier : 1f;
             float interval = 1f / Mathf.Max(framesPerSecond * speedFactor, 0.01f);
             timer += Time.fixedDeltaTime;
 

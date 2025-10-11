@@ -43,7 +43,7 @@ namespace InventorySampleScene
                 sR.flipX = false;
 
             }
-            if (rb.velocity.magnitude == 0)
+            if (rb.linearVelocity.magnitude == 0)
             {
                 animator.SetBool("Running", false);
             }
@@ -54,7 +54,7 @@ namespace InventorySampleScene
             }
             // Apply movement to the Rigidbody2D
             Vector2 movement = new Vector2(moveHorizontal, 0);
-            rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(movement.x * speed, rb.linearVelocity.y);
         }
     }
 }
