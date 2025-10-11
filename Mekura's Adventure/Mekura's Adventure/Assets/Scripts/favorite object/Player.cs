@@ -3,11 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using animator;
 using Unity.PlasticSCM.Editor.WebApi;
 
 public class Player : LivingEntity
 {
+    
+    public Action<Player> action;
+    public bool CanTalk { get; set; }
+    public bool IsTalk { get; set; }
     public string PlayerName;
     public float speed;
     public float radiuceattackZona=0.9f;
@@ -28,8 +33,10 @@ public class Player : LivingEntity
     private string LateAnim;
     private string CurrentAnim;
     private string[,] AnimationWalk;
+    public GameObject dialogMessanger;
 
-    
+    private 
+
     void Start()
     {
         Forward_button = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Forward_button"));
@@ -47,7 +54,8 @@ public class Player : LivingEntity
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<anim>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        
+        CanTalk = true;
     }
 
     // Update is called once per frame
@@ -63,19 +71,31 @@ public class Player : LivingEntity
         rb.velocity = new Vector2(moveX * speed, moveY*speed);
         if (Input.GetKey(Bt_Action))
         {
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
-                transform.position,
-                1, // ������ �����
-                LayerMask.GetMask("Water") // ���� ������
-            );
-            foreach(Collider2D i in hitEnemies) 
-            { 
-                Destroy(i.gameObject);
+            if (CanTalk && !IsTalk)
+            {
+                if (Input.GetKey(Bt_Action))
+                {
+                    dialogMessanger.GetComponent<DialogMessenger>().StartMessage();
+                    IsTalk = true;
+                }
             }
-        
+            else
+            {
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
+                    transform.position,
+                    1, // ������ �����
+                    LayerMask.GetMask("Water") // ���� ������
+                );
+                foreach (Collider2D i in hitEnemies)
+                {
+                    Destroy(i.gameObject);
+                }
+            }
+
+
         }
 
-        if(last_moveX!=moveX || last_moveY!=moveY) anim.SwitchAnimation(AnimationWalk[moveY+1, moveX+1]);
+            if (last_moveX!=moveX || last_moveY!=moveY) anim.SwitchAnimation(AnimationWalk[moveY+1, moveX+1]);
         attackzona.localPosition = new Vector3(moveX*radiuceattackZona, moveY* radiuceattackZona);
         last_moveX= moveX;
         last_moveY= moveY;
@@ -94,5 +114,8 @@ public class Player : LivingEntity
     {
         Gizmos.DrawSphere(attackzona.position, radiuceattackZona);
     }
+   
 
+    
+    
 }
