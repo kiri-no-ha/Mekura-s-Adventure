@@ -28,10 +28,10 @@ public class DialogMessenger : MonoBehaviour
         SearchNPS();
         if (NPC is not null)
         {
-            List<string> dialogsfromNPC = NPC.GetComponent<CanTalk>().LoadDialog();
-            DialogWindow dialogWindow_script = player.GetComponent<DialogWindow>();
-            dialogWindow_script.AddMessage(dialogsfromNPC);
-            dialogWindow_script.Gamelog();
+            //List<string> dialogsfromNPC = NPC.GetComponent<CanTalk>().LoadDialog();
+            //DialogWindow dialogWindow_script = player.GetComponent<DialogWindow>();
+            //dialogWindow_script.AddMessage(dialogsfromNPC);
+            //dialogWindow_script.Gamelog();
             
         }
         

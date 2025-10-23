@@ -46,43 +46,43 @@ public class CanTalk : MonoBehaviour
     //    };
     //}
 
-    public GameObject marker;
-    private Vector3 markerposition;
-    private string name;
-    private string key;
+    //public GameObject marker;
+    //private Vector3 markerposition;
+    //private string name;
+    //private string key;
 
    
-    private void Start()
-    {
-        markerposition = marker.transform.position; 
-        if (marker.activeSelf)
-        {
-            marker.SetActive(false);
-        }
+    //private void Start()
+    //{
+    //    markerposition = marker.transform.position; 
+    //    if (marker.activeSelf)
+    //    {
+    //        marker.SetActive(false);
+    //    }
 
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent<Player>(out Player player))
-        {
-            marker.SetActive(true);
+    //}
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.TryGetComponent<Player>(out Player player))
+    //    {
+    //        marker.SetActive(true);
             
             
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent<Player>(out Player player))
-        {
-            marker.SetActive(false);
+    //    }
+    //}
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.TryGetComponent<Player>(out Player player))
+    //    {
+    //        marker.SetActive(false);
             
-        }
-    }
-    // метод щагрузки диалогов
-    public List<string> LoadDialog()
-    {
-        return new List<string>() { "Armin", "hello word" };
-    }
+    //    }
+    //}
+    //// метод щагрузки диалогов
+    //public List<string> LoadDialog()
+    //{
+    //    return new List<string>() { "Armin", "hello word" };
+    //}
     
 }
     
