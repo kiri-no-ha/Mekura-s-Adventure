@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialogue>
+	<phrase name = "phrse_name"  emoji = "happy" сondition = "1">
+        Всем привет меня зовут Армен и тд
+    </phrase>
+    <phrase name = "phrse_name2"  emoji = "happy" сondition = "2">
+        sjsat america
+    </phrase>
+</dialogue>
