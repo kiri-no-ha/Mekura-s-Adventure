@@ -5,6 +5,8 @@ using UnityEngine;
 public class Item : Entity
 {
     // Start is called before the first frame update
+    public int count_in_stack = 1;
+    public int amount = 0;
     void Start()
     {
         
@@ -14,5 +16,9 @@ public class Item : Entity
     void Update()
     {
         
+    }
+    public Item CloneObject()
+    {
+        return new Item(); 
     }
 }
